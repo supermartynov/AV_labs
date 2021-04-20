@@ -62,6 +62,11 @@ def FindDistance(realFile, idealFile):
     realFeatures = Features(realFile)
     axialRealFeatures = AxialMomentFeatures(realFile, realFeatures[2], realFeatures[3], realFeatures[0])
     axialIdealFeatures = AxialMomentFeatures(idealFile, idealFeatures[2], idealFeatures[3], idealFeatures[0])
+    print(idealFeatures)
+    print(realFeatures)
+    print(axialIdealFeatures)
+    print(axialRealFeatures)
+
 
     distance = ((idealFeatures[4] - realFeatures[4]) ** 2
                + (idealFeatures[1] - realFeatures[1]) ** 2 + (idealFeatures[5] - realFeatures[5]) ** 2
@@ -71,38 +76,24 @@ def FindDistance(realFile, idealFile):
     return distance
 
 
-def allDistances():
-    for i in range(1):
-        distances_i = []
-        img1 = Image.open('results_cropped/' + str(i) + '.png')
-        for j in range(42):
-            img2 = Image.open('алфавит/' + ALPHABET[j] + '.png')
-            distances_i.append([FindDistance(img1, img2), ALPHABET[j]])
-        distances_i = sorted(distances_i, key=itemgetter(0))
 
-        distances.append(distances_i)
-
-    return distances
-
-distances= allDistances()
 
 def makeCSV():
-
-    with open("letters_info.csv", 'w', newline='') as csvfile:
+    with open("letters_info_ы_слитно.csv", 'w', newline='') as csvfile:
         writer = csv.writer(csvfile, delimiter=";")
         writer.writerow(["Символ", "Дистанции"])
+        for i in range(25):
+            tmpStr = ''
+            mas =[]
+            realImg = Image.open('results_cropped/' + str(i) + '.png')
+            for j in range(42):
+                idealImg = Image.open('алфавит/' + ALPHABET[j] + '.png')
+                mas.append([round(FindDistance(realImg, idealImg), 3), ALPHABET[j]])
+                mas.sort()
+            for j in range(42):
+                tmpStr += mas[j][1] + " - " + str(mas[j][0]) + ' '
+            writer.writerow([str(i + 1), tmpStr])
 
-    for i in range(25):
-        distances_i = []
-        img1 = Image.open('results_cropped/' + str(i) + '.png')
-        for j in range(42):
-            img2 = Image.open('алфавит/' + ALPHABET[j] + '.png')
-            distances_i.append([FindDistance(img1, img2), ALPHABET[j]])
-        distances_i = sorted(distances_i, key=itemgetter(0))
-
-        distances.append(distances_i)
-
-    return distances
 
 
 
@@ -116,8 +107,10 @@ x_profil = getProfil('строка1_чб.png')[0]
 y_profil = getProfil('строка1_чб.png')[1]
 top_coord, bottom_coord, left_coord, right_coord = textFinder(x_profil, y_profil)
 img = Image.open('строка1_чб.png')
-findLetters(img, x_profil, y_profil, 0)
-img1 = Image.open('results_cropped/1.png')
-img2 = Image.open('алфавит/Ғ.png')'''
+findLetters(img, x_profil, y_profil, 0)'''
+img1 = Image.open('results_cropped/0.png', )
+img2 = Image.open('алфавит/Д.png')
+FindDistance(img1, img2)
 
-print(allDistances())
+
+#makeCSV()
