@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="dba57fc5-5cc2-47d6-b6ba-33c9e3a933f1" name="Default Changelist" comment="" />
+    <list default="true" id="dba57fc5-5cc2-47d6-b6ba-33c9e3a933f1" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../lab6/image_edit.py" beforeDir="false" afterPath="$PROJECT_DIR$/../lab6/image_edit.py" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -15,7 +17,11 @@
       </list>
     </option>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
   <component name="ProjectId" id="1q7GUZ612BS0Apw3lO6jUwUCOHY" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/kz_maker.py" />
@@ -123,11 +129,23 @@
       <workItem from="1617219995684" duration="93000" />
       <workItem from="1617633952314" duration="715000" />
       <workItem from="1617656455453" duration="254000" />
+      <workItem from="1618296802066" duration="24000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
