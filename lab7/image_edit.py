@@ -1,4 +1,5 @@
 from PIL import Image
+import numpy as np
 
 def image_grey_shades_for_threshold(img):
    width = img.size[0]
@@ -13,9 +14,6 @@ def image_grey_shades_for_threshold(img):
             sr += color // 3
             grey_img.putpixel((i, j), (sr))
    return grey_img
-
-
-
 
 
 def createHarlic(img):
@@ -59,17 +57,46 @@ def createHarlic(img):
         for j in range(256):
             HarlicMatrix[i][j] = HarlicMatrix[i][j] // thirdK
 
-    print(thirdK)
-
     return HarlicMatrix
 
+def dispersion(matrix):
+    matrix = np.asarray(matrix)
+    p_j = matrix.sum(axis=0)
+    p_i = matrix.sum(axis=1)
+    print(p_i)
+    print(p_j)
 
-img1 = Image.open('img1/img2.png')
+    mean_i = (np.arange(1, 257) * p_i).sum()
+    mean_j = (np.arange(1, 257) * p_j).sum()
+
+    sigma_i, sigma_j = 0, 0
+    for i in range(1, 257):
+        sigma_i += (i - mean_j) ** 2 * p_i[i - 1]
+        sigma_j += (i - mean_i) ** 2 * p_j[i - 1]
+
+    return sigma_i, sigma_j
+
+def drawHarlic(Matrix):
+    width = 256
+    height = 256
+    img = Image.new('L', (width, height))
+
+    for i in range(256):
+        for j in range(256):
+            img.putpixel((i, j), Matrix[i][j])
+
+    return img
+
+img1 = Image.open('img1/block.jpeg')
 img_grey = image_grey_shades_for_threshold(img1)
 Matrix = createHarlic(img_grey)
 
-sum = 0
-for i in range(256):
+#HarlicImage = drawHarlic(Matrix)
+sigma_i, sigma_j = dispersion(Matrix)
+#print(sigma_i, sigma_j)
+
+
+'''for i in range(256):
     for j in range(256):
         if Matrix[i][j] > 0:
-            print(i, j, Matrix[i][j])
+            print(i, j, Matrix[i][j])'''
